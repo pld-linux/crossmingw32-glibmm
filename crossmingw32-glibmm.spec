@@ -37,10 +37,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		__cxx			%{target}-g++
 
 %description
-A C++ interface for glib library.
+A C++ interface for glib library - cross Mingw32 version.
 
 %description -l pl.UTF-8
-Interfejs C++ dla biblioteki glib.
+Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32.
 
 %prep
 %setup -q -n %{_realname}-%{version}
