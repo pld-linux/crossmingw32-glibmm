@@ -1,7 +1,7 @@
 #
 %define		_realname	glibmm
 Summary:	A C++ interface for glib library - cross Mingw32 version
-Summary(pl.UTF-8):   Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
+Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
 Name:		crossmingw32-%{_realname}
 Version:	2.12.5
 Release:	1
