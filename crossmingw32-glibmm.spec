@@ -1,7 +1,7 @@
 #
-%define		_realname	glibmm
 Summary:	A C++ interface for glib library - cross Mingw32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
+%define		_realname	glibmm
 Name:		crossmingw32-%{_realname}
 Version:	2.12.5
 Release:	1
@@ -14,13 +14,12 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	crossmingw32-glib2 >= 2.12.9
 BuildRequires:	crossmingw32-libsigc++ >= 2.0.17
-BuildRequires:	libstdc++-devel
+BuildRequires:	crossmingw32-pkgconfig
+#BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.4d
 BuildRequires:	perl-XML-Parser
-BuildRequires:	pkgconfig
 Requires:	crossmingw32-glib2 >= 2.12.9
 Requires:	crossmingw32-libsigc++ >= 2.0.17
-Obsoletes:	gtkmm-glib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -32,6 +31,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		gcclib			%{_prefix}/lib/gcc-lib/%{target}/%{version}
 
 %define		_sysprefix		/usr
+%define		_pkgconfigdir		%{_prefix}/lib/pkgconfig
 %define		_prefix			%{_sysprefix}/%{target}
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
@@ -47,16 +47,15 @@ Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32.
 
 %build
 export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
-export CXXFLAGS="-I%{_includedir}/glib-2.0 -I/%{_libdir}/glib-2.0/include %{rpmcxxflags}"
-
 %{__libtoolize}
 %{__aclocal} -I scripts
 %{__autoconf}
 %{__automake}
 %configure \
+	--target=%{target} \
 	--host=%{target} \
-	--enable-fulldocs \
-	%{?with_static_libs:--enable-static}
+	--disable-fulldocs \
+	--enable-static
 
 %{__make}
 
@@ -72,8 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog CHANGES NEWS README
-%attr(755,root,root) %{_libdir}/lib*.a
+%{_libdir}/lib*.a
 %{_libdir}/lib*.la
+%{_bindir}/*.dll
 %dir %{_libdir}/%{_realname}-2.4
 %{_libdir}/%{_realname}-2.4/include
 %dir %{_libdir}/%{_realname}-2.4/proc
