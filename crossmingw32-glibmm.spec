@@ -1,13 +1,13 @@
 Summary:	A C++ interface for glib library - cross Mingw32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
-%define		_realname	glibmm
-Name:		crossmingw32-%{_realname}
-Version:	2.12.9
+%define		realname	glibmm
+Name:		crossmingw32-%{realname}
+Version:	2.12.10
 Release:	1
 License:	LGPL
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.12/%{_realname}-%{version}.tar.bz2
-# Source0-md5:	1bae98a3b7b6bc6e792652b800b08439
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.12/%{realname}-%{version}.tar.bz2
+# Source0-md5:	85830693d669f0d86d6e64db3b57f581
 URL:		http://gtkmm.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -67,7 +67,7 @@ DLL glibmm library for Windows.
 Biblioteka DLL glibmm dla Windows.
 
 %prep
-%setup -q -n %{_realname}-%{version}
+%setup -q -n %{realname}-%{version}
 
 %build
 export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
@@ -112,9 +112,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libglibmm_generate_extra_defs-2.4.dll.a
 %{_libdir}/libglibmm-2.4.la
 %{_libdir}/libglibmm_generate_extra_defs-2.4.la
-%dir %{_libdir}/%{_realname}-2.4
-%{_libdir}/%{_realname}-2.4/include
-%{_includedir}/%{_realname}-2.4
+%dir %{_libdir}/glibmm-2.4
+%{_libdir}/glibmm-2.4/include
+%{_includedir}/glibmm-2.4
 %{_pkgconfigdir}/glibmm-2.4.pc
 
 %files static
