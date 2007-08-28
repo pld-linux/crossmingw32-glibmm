@@ -14,7 +14,7 @@ BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc-c++
 BuildRequires:	crossmingw32-glib2 >= 2.12.9
 BuildRequires:	crossmingw32-libsigc++ >= 2.0.17
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig >= 1:0.15
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-XML-Parser
 Requires:	crossmingw32-glib2 >= 2.12.9
@@ -25,7 +25,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		target			i386-mingw32
 %define		target_platform 	i386-pc-mingw32
-%define		arch			%{_prefix}/%{target}
 
 %define		_sysprefix		/usr
 %define		_prefix			%{_sysprefix}/%{target}
@@ -70,7 +69,7 @@ Biblioteka DLL glibmm dla Windows.
 %setup -q -n %{realname}-%{version}
 
 %build
-export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
 %{__libtoolize}
 %{__aclocal} -I scripts
 %{__autoconf}
