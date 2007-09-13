@@ -6,7 +6,7 @@ Version:	2.14.0
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.12/%{realname}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.14/%{realname}-%{version}.tar.bz2
 # Source0-md5:	e4ae55323d50bb77db0099ae93eddcd3
 URL:		http://gtkmm.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
