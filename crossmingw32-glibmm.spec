@@ -2,22 +2,22 @@ Summary:	A C++ interface for glib library - cross Mingw32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.12.10
+Version:	2.14.0
 Release:	1
-License:	LGPL
+License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.12/%{realname}-%{version}.tar.bz2
-# Source0-md5:	85830693d669f0d86d6e64db3b57f581
+# Source0-md5:	e4ae55323d50bb77db0099ae93eddcd3
 URL:		http://gtkmm.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc-c++
-BuildRequires:	crossmingw32-glib2 >= 2.12.9
+BuildRequires:	crossmingw32-glib2 >= 2.14.0
 BuildRequires:	crossmingw32-libsigc++ >= 2.0.17
-BuildRequires:	pkgconfig >= 1:0.15
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-XML-Parser
-Requires:	crossmingw32-glib2 >= 2.12.9
+BuildRequires:	pkgconfig >= 1:0.15
+Requires:	crossmingw32-glib2 >= 2.14.0
 Requires:	crossmingw32-libsigc++ >= 2.0.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,7 +55,7 @@ Statyczna biblioteka glibmm (wersja skrośna mingw32).
 Summary:	DLL glibmm library for Windows
 Summary(pl.UTF-8):	Biblioteka DLL glibmm dla Windows
 Group:		Applications/Emulators
-Requires:	crossmingw32-glib2-dll >= 2.12.9
+Requires:	crossmingw32-glib2-dll >= 2.14.0
 Requires:	crossmingw32-libsigc++-dll >= 2.0.17
 Requires:	wine
 
