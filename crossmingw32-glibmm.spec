@@ -2,23 +2,24 @@ Summary:	A C++ interface for glib library - cross Mingw32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.14.2
+Version:	2.16.0
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.14/%{realname}-%{version}.tar.bz2
-# Source0-md5:	58b4fdc97738795a19b1f5ad37f186b4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.16/%{realname}-%{version}.tar.bz2
+# Source0-md5:	0a2442b754b97c67d0ccb4a9a2bebcb2
+Patch0:		glibmm-unix.patch
 URL:		http://gtkmm.sourceforge.net/
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.58
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	crossmingw32-gcc-c++
-BuildRequires:	crossmingw32-glib2 >= 2.14.0
-BuildRequires:	crossmingw32-libsigc++ >= 2.0.17
+BuildRequires:	crossmingw32-glib2 >= 2.16.0
+BuildRequires:	crossmingw32-libsigc++ >= 2.2.0
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig >= 1:0.15
-Requires:	crossmingw32-glib2 >= 2.14.0
-Requires:	crossmingw32-libsigc++ >= 2.0.17
+Requires:	crossmingw32-glib2 >= 2.16.0
+Requires:	crossmingw32-libsigc++ >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -56,8 +57,8 @@ Statyczna biblioteka glibmm (wersja skrośna mingw32).
 Summary:	DLL glibmm library for Windows
 Summary(pl.UTF-8):	Biblioteka DLL glibmm dla Windows
 Group:		Applications/Emulators
-Requires:	crossmingw32-glib2-dll >= 2.14.0
-Requires:	crossmingw32-libsigc++-dll >= 2.0.17
+Requires:	crossmingw32-glib2-dll >= 2.16.0
+Requires:	crossmingw32-libsigc++-dll >= 2.2.0
 Requires:	wine
 
 %description dll
@@ -68,6 +69,7 @@ Biblioteka DLL glibmm dla Windows.
 
 %prep
 %setup -q -n %{realname}-%{version}
+%patch0 -p1
 
 %build
 export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
@@ -107,22 +109,30 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog CHANGES NEWS README
+%doc AUTHORS ChangeLog NEWS README
+%{_libdir}/libgiomm-2.4.dll.a
 %{_libdir}/libglibmm-2.4.dll.a
 %{_libdir}/libglibmm_generate_extra_defs-2.4.dll.a
+%{_libdir}/libgiomm-2.4.la
 %{_libdir}/libglibmm-2.4.la
 %{_libdir}/libglibmm_generate_extra_defs-2.4.la
+%dir %{_libdir}/giomm-2.4
+%{_libdir}/giomm-2.4/include
 %dir %{_libdir}/glibmm-2.4
 %{_libdir}/glibmm-2.4/include
+%{_includedir}/giomm-2.4
 %{_includedir}/glibmm-2.4
+%{_pkgconfigdir}/giomm-2.4.pc
 %{_pkgconfigdir}/glibmm-2.4.pc
 
 %files static
 %defattr(644,root,root,755)
+%{_libdir}/libgiomm-2.4.a
 %{_libdir}/libglibmm-2.4.a
 %{_libdir}/libglibmm_generate_extra_defs-2.4.a
 
 %files dll
 %defattr(644,root,root,755)
+%{_dlldir}/libgiomm-2.4-*.dll
 %{_dlldir}/libglibmm-2.4-*.dll
 %{_dlldir}/libglibmm_generate_extra_defs-2.4-*.dll
