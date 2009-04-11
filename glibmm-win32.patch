@@ -1,0 +1,14 @@
+--- glibmm-2.20.0/tools/extra_defs_gen/Makefile.am.orig	2008-11-16 05:04:58.000000000 +0100
++++ glibmm-2.20.0/tools/extra_defs_gen/Makefile.am	2009-04-11 20:45:38.321713807 +0200
+@@ -24,7 +24,11 @@
+ INCLUDES = $(GLIBMM_CFLAGS) $(GIOMM_CFLAGS)
+ LIBS = $(GLIBMM_LIBS) $(GIOMM_LIBS)
+ 
++if PLATFORM_WIN32
++noinst_PROGRAMS = generate_extra_defs
++else
+ noinst_PROGRAMS = generate_extra_defs generate_defs_gio
++endif
+ 
+ generate_extra_defs_SOURCES = generate_defs_glib.cc
+ generate_extra_defs_LDADD = libglibmm_generate_extra_defs-2.4.la
