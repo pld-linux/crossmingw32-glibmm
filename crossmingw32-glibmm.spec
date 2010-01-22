@@ -2,13 +2,12 @@ Summary:	A C++ interface for glib library - cross Mingw32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.20.0
+Version:	2.22.1
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.20/%{realname}-%{version}.tar.bz2
-# Source0-md5:	38fa409b531144c238b6e2532e351799
-Patch0:		%{realname}-win32.patch
+# Source0-md5:	1a96c7fde75ddbb421bc23fb4aa7adba
 URL:		http://www.gtkmm.org/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.7
@@ -16,6 +15,7 @@ BuildRequires:	crossmingw32-gcc-c++
 BuildRequires:	crossmingw32-glib2 >= 2.20.0
 BuildRequires:	crossmingw32-libsigc++ >= 2.2.0
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	mm-common
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig >= 1:0.15
 Requires:	crossmingw32-glib2 >= 2.20.0
@@ -76,12 +76,11 @@ Biblioteka DLL glibmm dla Windows.
 
 %prep
 %setup -q -n %{realname}-%{version}
-%patch0 -p1
 
 %build
 export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
 %{__libtoolize}
-%{__aclocal} -I scripts
+%{__aclocal} -I build
 %{__autoconf}
 %{__automake}
 %configure \
