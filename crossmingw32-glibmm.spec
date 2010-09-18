@@ -1,24 +1,24 @@
-Summary:	A C++ interface for glib library - cross Mingw32 version
-Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32
+Summary:	A C++ interface for glib library - cross MinGW32 version
+Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.22.1
+Version:	2.24.2
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.20/%{realname}-%{version}.tar.bz2
-# Source0-md5:	1a96c7fde75ddbb421bc23fb4aa7adba
+# Source0-md5:	48861fec006c2bd8e301d8e44cd12d3c
 URL:		http://www.gtkmm.org/
-BuildRequires:	autoconf >= 2.58
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	crossmingw32-gcc-c++
-BuildRequires:	crossmingw32-glib2 >= 2.20.0
+BuildRequires:	crossmingw32-glib2 >= 2.24.0
 BuildRequires:	crossmingw32-libsigc++ >= 2.2.0
 BuildRequires:	libtool >= 2:1.5
-BuildRequires:	mm-common
-BuildRequires:	perl-XML-Parser
+BuildRequires:	m4
+BuildRequires:	mm-common >= 0.7
 BuildRequires:	pkgconfig >= 1:0.15
-Requires:	crossmingw32-glib2 >= 2.20.0
+Requires:	crossmingw32-glib2 >= 2.24.0
 Requires:	crossmingw32-libsigc++ >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,22 +43,22 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		filterout_ld	-Wl,-z,.*
 
 %description
-A C++ interface for glib library - cross Mingw32 version.
+A C++ interface for glib library - cross MinGW32 version.
 
 %description -l pl.UTF-8
-Interfejs C++ dla biblioteki glib - wersja skrośna Mingw32.
+Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32.
 
 %package static
-Summary:	Static glibmm library (cross mingw32 version)
-Summary(pl.UTF-8):	Statyczna biblioteka glibmm (wersja skrośna mingw32)
+Summary:	Static glibmm library (cross MinGW32 version)
+Summary(pl.UTF-8):	Statyczna biblioteka glibmm (wersja skrośna MinGW32)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description static
-Static glibmm library (cross mingw32 version).
+Static glibmm library (cross MinGW32 version).
 
 %description static -l pl.UTF-8
-Statyczna biblioteka glibmm (wersja skrośna mingw32).
+Statyczna biblioteka glibmm (wersja skrośna MinGW32).
 
 %package dll
 Summary:	DLL glibmm library for Windows
@@ -105,10 +105,11 @@ mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 %{target}-strip -g -R.comment -R.note $RPM_BUILD_ROOT%{_libdir}/*.a
 %endif
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/{doc,devhelp}
 # use these from native glibmm if needed
-rm -rf $RPM_BUILD_ROOT%{_libdir}/glibmm-2.4/proc
-rm -rf $RPM_BUILD_ROOT%{_datadir}/aclocal
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/glibmm-2.4/proc \
+	$RPM_BUILD_ROOT%{_datadir}/glibmm-2.4/doctool \
+	$RPM_BUILD_ROOT%{_datadir}/aclocal
 
 %clean
 rm -rf $RPM_BUILD_ROOT
