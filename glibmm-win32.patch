@@ -1,14 +1,18 @@
---- glibmm-2.20.0/tools/extra_defs_gen/Makefile.am.orig	2008-11-16 05:04:58.000000000 +0100
-+++ glibmm-2.20.0/tools/extra_defs_gen/Makefile.am	2009-04-11 20:45:38.321713807 +0200
-@@ -24,7 +24,11 @@
- INCLUDES = $(GLIBMM_CFLAGS) $(GIOMM_CFLAGS)
- LIBS = $(GLIBMM_LIBS) $(GIOMM_LIBS)
+--- glibmm-2.34.1/gio/giomm/contenttype.cc.orig	2012-10-06 14:28:36.000000000 +0200
++++ glibmm-2.34.1/gio/giomm/contenttype.cc	2012-11-06 16:54:11.439593123 +0100
+@@ -56,6 +56,7 @@
+   return retvalue;
+ }
  
-+if PLATFORM_WIN32
-+noinst_PROGRAMS = generate_extra_defs
-+else
- noinst_PROGRAMS = generate_extra_defs generate_defs_gio
-+endif
++#ifndef G_OS_WIN32
+ Glib::RefPtr<Gio::Icon> content_type_get_symbolic_icon(const Glib::ustring& type)
+ {
+   Glib::RefPtr<Icon> retvalue = Glib::wrap(g_content_type_get_symbolic_icon(type.c_str()));
+@@ -63,6 +64,7 @@
+     retvalue->reference(); //The function does not do a ref for us.
+   return retvalue;
+ }
++#endif
  
- generate_extra_defs_SOURCES = generate_defs_glib.cc
- generate_extra_defs_LDADD = libglibmm_generate_extra_defs-2.4.la
+ bool content_type_can_be_executable(const Glib::ustring& type)
+ {
