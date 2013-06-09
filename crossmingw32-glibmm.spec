@@ -2,12 +2,12 @@ Summary:	A C++ interface for glib library - cross MinGW32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.36.0
-Release:	3
+Version:	2.36.2
+Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.36/%{realname}-%{version}.tar.xz
-# Source0-md5:	6f8484ae440e6b2d027a2cf9a3bb7591
+# Source0-md5:	5c96d566c22c209d7b9cbf2344c469e9
 Patch0:		glibmm-win32.patch
 URL:		http://www.gtkmm.org/
 BuildRequires:	autoconf >= 2.59
