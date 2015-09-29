@@ -2,26 +2,27 @@ Summary:	A C++ interface for glib library - cross MinGW32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.44.0
+Version:	2.46.1
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.44/%{realname}-%{version}.tar.xz
-# Source0-md5:	32ee4150b436d097fe2506d0b0b13a75
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.46/%{realname}-%{version}.tar.xz
+# Source0-md5:	77ad60087aae6f9378ea0ba0b743e5df
 URL:		http://www.gtkmm.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	crossmingw32-gcc-c++
-BuildRequires:	crossmingw32-glib2 >= 2.44.0
-BuildRequires:	crossmingw32-libsigc++ >= 2.2.10
+BuildRequires:	crossmingw32-gcc-c++ >= 1:4.6
+BuildRequires:	crossmingw32-glib2 >= 2.46.0
+BuildRequires:	crossmingw32-libsigc++ >= 2.6.0
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	m4
-BuildRequires:	mm-common >= 0.9.6
+BuildRequires:	mm-common >= 0.9.8
 BuildRequires:	pkgconfig >= 1:0.15
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	crossmingw32-glib2 >= 2.44.0
-Requires:	crossmingw32-libsigc++ >= 2.2.10
+Requires:	crossmingw32-gcc-c++ >= 1:4.6
+Requires:	crossmingw32-glib2 >= 2.46.0
+Requires:	crossmingw32-libsigc++ >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -70,8 +71,8 @@ Statyczna biblioteka glibmm (wersja skrośna MinGW32).
 Summary:	DLL glibmm library for Windows
 Summary(pl.UTF-8):	Biblioteka DLL glibmm dla Windows
 Group:		Applications/Emulators
-Requires:	crossmingw32-glib2-dll >= 2.44.0
-Requires:	crossmingw32-libsigc++-dll >= 2.2.10
+Requires:	crossmingw32-glib2-dll >= 2.46.0
+Requires:	crossmingw32-libsigc++-dll >= 2.6.0
 Requires:	wine
 
 %description dll
@@ -89,6 +90,8 @@ export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
 %{__aclocal} -I build
 %{__autoconf}
 %{__automake}
+# mingw32 requires gnu++11 (instead of c++11) for off[64]_t
+CXXFLAGS="%{rpmcxxflags} -std=gnu++11"
 %configure \
 	--target=%{target} \
 	--host=%{target} \
