@@ -1,0 +1,41 @@
+--- glibmm-2.48.1/glib/glibmm/dispatcher.cc.orig	2016-03-28 21:50:50.000000000 +0200
++++ glibmm-2.48.1/glib/glibmm/dispatcher.cc	2016-06-25 08:53:41.508797517 +0200
+@@ -36,6 +36,7 @@
+ #include <direct.h>
+ #include <list>
+ #include <mutex>
++#include <std-threads/mingw.mutex.h>
+ #else
+ #include <unistd.h>
+ #endif
+--- glibmm-2.48.1/glib/glibmm/objectbase.h.orig	2016-03-31 11:39:07.000000000 +0200
++++ glibmm-2.48.1/glib/glibmm/objectbase.h	2016-06-25 08:50:30.876496926 +0200
+@@ -31,6 +31,7 @@
+ #include <map> // Needed until the next ABI break.
+ #include <memory> // Not used by ObjectBase any more, but user code may rely on it being here.
+ #include <mutex>
++#include <std-threads/mingw.mutex.h>
+ 
+ #ifndef DOXYGEN_SHOULD_SKIP_THIS
+ extern "C" {
+--- glibmm-2.48.1/glib/glibmm/thread.cc.orig	2016-03-31 11:13:59.000000000 +0200
++++ glibmm-2.48.1/glib/glibmm/thread.cc	2016-06-25 07:54:44.157960991 +0200
+@@ -163,7 +163,7 @@ Thread::set_priority(ThreadPriority prio
+ ThreadPriority
+ Thread::get_priority() const
+ {
+-  return THREAD_PRIORITY_NORMAL; // An appropriate result now that this is deprecated because the
++  return Glib::THREAD_PRIORITY_NORMAL; // An appropriate result now that this is deprecated because the
+                                  // priority concept has been removed.
+ }
+ 
+--- glibmm-2.48.1/glib/glibmm/thread.h.orig	2016-03-31 11:13:59.000000000 +0200
++++ glibmm-2.48.1/glib/glibmm/thread.h	2016-06-25 08:51:22.762882501 +0200
+@@ -53,6 +53,7 @@
+ 
+ /* Shadow THREAD_PRIORITY_NORMAL macro (from winbase.h).
+  */
++#include <windows.h> // ensure it's included before shadowing, not after
+ #if defined(THREAD_PRIORITY_NORMAL) && !defined(GLIBMM_MACRO_SHADOW_THREAD_PRIORITY_NORMAL)
+ enum { GLIBMM_MACRO_DEFINITION_THREAD_PRIORITY_NORMAL = THREAD_PRIORITY_NORMAL };
+ #undef THREAD_PRIORITY_NORMAL
