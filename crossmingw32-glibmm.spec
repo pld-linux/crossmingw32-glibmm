@@ -2,18 +2,18 @@ Summary:	A C++ interface for glib library - cross MinGW32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.52.0
+Version:	2.56.0
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.52/%{realname}-%{version}.tar.xz
-# Source0-md5:	0ceaccabce7772e6ef6d0657bb0d2de1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.56/%{realname}-%{version}.tar.xz
+# Source0-md5:	5aa7a60084fe3e01d746c96f4a115302
 Patch0:		glibmm-mingw32.patch
 URL:		http://www.gtkmm.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	crossmingw32-gcc-c++ >= 1:4.6
-BuildRequires:	crossmingw32-glib2 >= 2.50.0
+BuildRequires:	crossmingw32-gcc-c++ >= 1:4.7
+BuildRequires:	crossmingw32-glib2 >= 2.56.0
 BuildRequires:	crossmingw32-libsigc++ >= 2.10.0
 BuildRequires:	crossmingw32-std-threads
 BuildRequires:	libtool >= 2:2.0
@@ -22,8 +22,8 @@ BuildRequires:	mm-common >= 0.9.10
 BuildRequires:	pkgconfig >= 1:0.15
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	crossmingw32-gcc-c++ >= 1:4.6
-Requires:	crossmingw32-glib2 >= 2.50.0
+Requires:	crossmingw32-gcc-c++ >= 1:4.7
+Requires:	crossmingw32-glib2 >= 2.56.0
 Requires:	crossmingw32-libsigc++ >= 2.10.0
 Requires:	crossmingw32-std-threads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,7 +74,7 @@ Statyczna biblioteka glibmm (wersja skrośna MinGW32).
 Summary:	DLL glibmm library for Windows
 Summary(pl.UTF-8):	Biblioteka DLL glibmm dla Windows
 Group:		Applications/Emulators
-Requires:	crossmingw32-glib2-dll >= 2.50.0
+Requires:	crossmingw32-glib2-dll >= 2.56.0
 Requires:	crossmingw32-libsigc++-dll >= 2.10.0
 Requires:	wine
 
@@ -94,6 +94,8 @@ export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
 %{__aclocal} -I build
 %{__autoconf}
 %{__automake}
+# std-threads require at least WinXP API
+CPPFLAGS="%{rpmcppflags} -DWINVER=0x0501"
 # mingw32 requires gnu++11 (instead of c++11) for off[64]_t
 CXXFLAGS="%{rpmcxxflags} -std=gnu++11"
 %configure \
@@ -112,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_dlldir}
-mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
+%{__mv} $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 
 %if 0%{!?debug:1}
 %{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_dlldir}/*.dll
