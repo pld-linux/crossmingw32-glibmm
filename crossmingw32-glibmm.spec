@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
 Version:	2.56.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.56/%{realname}-%{version}.tar.xz
@@ -26,6 +26,7 @@ Requires:	crossmingw32-gcc-c++ >= 1:4.7
 Requires:	crossmingw32-glib2 >= 2.56.0
 Requires:	crossmingw32-libsigc++ >= 2.10.0
 Requires:	crossmingw32-std-threads
+ExcludeArch:	i386
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -45,7 +46,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %ifnarch %{ix86}
 # arch-specific flags (like alpha's -mieee) are not valid for i386 gcc
-%define		optflags	-O2
+# now at least i486 is required for atomic operations
+%define		optflags	-O2 -march=i486
 %endif
 # -z options are invalid for mingw linker, most of -f options are Linux-specific
 %define		filterout_ld	-Wl,-z,.*
