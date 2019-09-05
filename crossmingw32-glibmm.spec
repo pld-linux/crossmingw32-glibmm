@@ -156,6 +156,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files dll
 %defattr(644,root,root,755)
-%{_dlldir}/libgiomm-2.4-*.dll
-%{_dlldir}/libglibmm-2.4-*.dll
-%{_dlldir}/libglibmm_generate_extra_defs-2.4-*.dll
+%{_dlldir}/libgiomm-2.4-1.dll
+%{_dlldir}/libglibmm-2.4-1.dll
+%{_dlldir}/libglibmm_generate_extra_defs-2.4-1.dll
