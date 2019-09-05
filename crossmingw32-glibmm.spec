@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
 Version:	2.58.0
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.58/%{realname}-%{version}.tar.xz
@@ -118,6 +118,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_dlldir}
 %{__mv} $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
+
 %if 0%{!?debug:1}
 %{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_dlldir}/*.dll
 %{target}-strip -g -R.comment -R.note $RPM_BUILD_ROOT%{_libdir}/*.a
@@ -136,9 +138,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgiomm-2.4.dll.a
 %{_libdir}/libglibmm-2.4.dll.a
 %{_libdir}/libglibmm_generate_extra_defs-2.4.dll.a
-%{_libdir}/libgiomm-2.4.la
-%{_libdir}/libglibmm-2.4.la
-%{_libdir}/libglibmm_generate_extra_defs-2.4.la
 %dir %{_libdir}/giomm-2.4
 %{_libdir}/giomm-2.4/include
 %dir %{_libdir}/glibmm-2.4
