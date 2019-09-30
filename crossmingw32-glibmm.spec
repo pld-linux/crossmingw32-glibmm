@@ -2,18 +2,18 @@ Summary:	A C++ interface for glib library - cross MinGW32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.60.0
+Version:	2.62.0
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.58/%{realname}-%{version}.tar.xz
-# Source0-md5:	0f6180d185c067bdb2aa30d035f9b867
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.62/%{realname}-%{version}.tar.xz
+# Source0-md5:	7da228e3f0c6a10024b9a7708c53691e
 Patch0:		glibmm-mingw32.patch
-URL:		http://www.gtkmm.org/
+URL:		https://www.gtkmm.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	crossmingw32-gcc-c++ >= 1:4.7
-BuildRequires:	crossmingw32-glib2 >= 2.60.0
+BuildRequires:	crossmingw32-glib2 >= 2.62.0
 BuildRequires:	crossmingw32-libsigc++ >= 2.10.0
 BuildRequires:	crossmingw32-std-threads
 BuildRequires:	libtool >= 2:2.0
@@ -23,7 +23,7 @@ BuildRequires:	pkgconfig >= 1:0.15
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	crossmingw32-gcc-c++ >= 1:4.7
-Requires:	crossmingw32-glib2 >= 2.60.0
+Requires:	crossmingw32-glib2 >= 2.62.0
 Requires:	crossmingw32-libsigc++ >= 2.10.0
 Requires:	crossmingw32-std-threads
 ExcludeArch:	i386
@@ -76,7 +76,7 @@ Statyczna biblioteka glibmm (wersja skrośna MinGW32).
 Summary:	DLL glibmm library for Windows
 Summary(pl.UTF-8):	Biblioteka DLL glibmm dla Windows
 Group:		Applications/Emulators
-Requires:	crossmingw32-glib2-dll >= 2.60.0
+Requires:	crossmingw32-glib2-dll >= 2.62.0
 Requires:	crossmingw32-libsigc++-dll >= 2.10.0
 Requires:	wine
 
