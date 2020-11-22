@@ -18,9 +18,9 @@
  
  #ifndef DOXYGEN_SHOULD_SKIP_THIS
  extern "C" {
---- glibmm-2.48.1/glib/glibmm/thread.cc.orig	2016-03-31 11:13:59.000000000 +0200
-+++ glibmm-2.48.1/glib/glibmm/thread.cc	2016-06-25 07:54:44.157960991 +0200
-@@ -163,7 +163,7 @@ Thread::set_priority(ThreadPriority prio
+--- glibmm-2.64.4/glib/src/thread.ccg.orig	2020-11-21 12:09:15.168252200 +0100
++++ glibmm-2.64.4/glib/src/thread.ccg	2020-11-22 19:15:06.082376889 +0100
+@@ -147,7 +147,7 @@ Thread::set_priority(ThreadPriority prio
  ThreadPriority
  Thread::get_priority() const
  {
@@ -29,8 +29,8 @@
                                   // priority concept has been removed.
  }
  
---- glibmm-2.48.1/glib/glibmm/thread.h.orig	2016-03-31 11:13:59.000000000 +0200
-+++ glibmm-2.48.1/glib/glibmm/thread.h	2016-06-25 08:51:22.762882501 +0200
+--- glibmm-2.64.4/glib/src/thread.hg.orig	2020-11-21 12:09:15.168252200 +0100
++++ glibmm-2.64.4/glib/src/thread.hg	2020-11-22 19:13:56.779419002 +0100
 @@ -53,6 +53,7 @@
  
  /* Shadow THREAD_PRIORITY_NORMAL macro (from winbase.h).
