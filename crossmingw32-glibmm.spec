@@ -2,12 +2,12 @@ Summary:	A C++ interface for glib library - cross MinGW32 version
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
-Version:	2.64.5
+Version:	2.66.0
 Release:	1
 License:	LGPL v2+
 Group:		Development/Libraries
-Source0:	https://download.gnome.org/sources/glibmm/2.64/%{realname}-%{version}.tar.xz
-# Source0-md5:	02c40e6bc0721c564e4b033a18cb3a8e
+Source0:	https://download.gnome.org/sources/glibmm/2.66/%{realname}-%{version}.tar.xz
+# Source0-md5:	e7084e702d87ac9e34a5837f5a500822
 Patch0:		glibmm-mingw32.patch
 URL:		https://www.gtkmm.org/
 BuildRequires:	autoconf >= 2.59
@@ -105,7 +105,7 @@ CXXFLAGS="%{rpmcxxflags} -std=gnu++11"
 %configure \
 	--target=%{target} \
 	--host=%{target} \
-	--disable-fulldocs \
+	--disable-documentation \
 	--enable-maintainer-mode \
 	--disable-silent-rules \
 	--enable-static
@@ -128,7 +128,6 @@ install -d $RPM_BUILD_ROOT%{_dlldir}
 %{target}-strip -g -R.comment -R.note $RPM_BUILD_ROOT%{_libdir}/*.a
 %endif
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/{doc,devhelp}
 # use these from native glibmm if needed
 %{__rm} -r $RPM_BUILD_ROOT%{_libdir}/glibmm-2.4/proc
 
