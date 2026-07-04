@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Interfejs C++ dla biblioteki glib - wersja skrośna MinGW32
 %define		realname	glibmm
 Name:		crossmingw32-%{realname}
 Version:	2.66.9
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Development/Libraries
 Source0:	https://download.gnome.org/sources/glibmm/2.66/%{realname}-%{version}.tar.xz
@@ -95,6 +95,7 @@ Biblioteka DLL glibmm dla Windows.
 %patch -P0 -p1
 
 %build
+unset PKG_CONFIG_PATH
 export PKG_CONFIG_LIBDIR=%{_prefix}/lib/pkgconfig
 mm-common-prepare --copy --force
 %{__libtoolize}
